@@ -7,8 +7,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <bean id="knight" class="com.springinaction.knights.BraveKnight">
+    <bean id="knight" class="com.springinaction.knights.BraveKnight"
+          init-method="before"
+          destroy-method="after">
         <constructor-arg ref="quest"/>
+
     </bean>
     <bean id="quest"
           class="com.springinaction.knights.SlayDragonQuest"/>
