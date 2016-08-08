@@ -2,18 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-autowire="byType">
     <bean id="duke"
           class="com.springinaction.springidol.Juggler">
         <constructor-arg value="15"/>
     </bean>
     <bean id="sonnet29"
-          class="com.springinaction.springidol.Sonnet29"/>
+          class="com.springinaction.springidol.Sonnet29" />
+    <bean id="someSonnet"
+          class="com.springinaction.springidol.SomeSonnet" autowire-candidate="false"/>
 
     <bean id="poeticDuke"
           class="com.springinaction.springidol.PoeticJuggler">
         <constructor-arg value="15"/>
-        <property name="poem" ref="sonnet29" />
+        <!--<property name="poem" ref="sonnet29" />-->
     </bean>
 
     <bean id="theStage"

@@ -4,6 +4,7 @@ package com.springinaction.springidol;
  * @author oleh.krupenia.
  */
 public class Sonnet29 implements Poem {
+    int i = 10;
     private static String[] LINES = {
             "When,indisgracewithfortuneandmen'seyes,",
             "I allalonebeweepmyoutcaststate",
