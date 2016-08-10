@@ -1,21 +1,31 @@
 package com.springinaction.springidol;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
 /**
  * @author oleh.krupenia.
  */
+@Aspect
 public class Audience {
-    public void takeSeats(){
-        System.out.println("The audience is taking their seats.");
+    @Pointcut(
+            "execution(* com.springinaction.springidol.Performer.perform(..))")
+    public void performance() {
     }
-    public void turnOffCellPhones(){
-        System.out.println("The audience is turning off their cell phones");
-    }
-    public void applaud(){
-        System.out.println("CLAP CLAP CLAP CLAP CLAP");
-    }
-    public void demandRefund(){
-        System.out.println("Boo! We want our money back!");
+
+    @Around("performance()")
+    public void watchPerformance(ProceedingJoinPoint joinpoint){
+        try {
+            System.out.println("Theaudienceistakingtheirseats.");
+            System.out.println("Theaudienceisturningofftheircellphones");
+            long start=System.currentTimeMillis();
+            joinpoint.proceed();
+            long end=System.currentTimeMillis();
+            System.out.println("CLAPCLAPCLAPCLAPCLAP");
+            System.out.println("Theperformancetook"+(end-start)
+                    + "milliseconds.");
+        } catch(Throwable t){
+            System.out.println("Boo!Wewantourmoneyback!");
+        }
     }
 }
