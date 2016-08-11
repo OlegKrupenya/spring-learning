@@ -12,6 +12,7 @@ public class PerformerMain {
                 "spring-idol.xml");
         Performer performer = (Performer) ctx.getBean("poeticDuke");
         performer.perform();
+        ((Contestant) performer).receiveAward();
         System.out.println(ctx.getBean("theStage"));
     }
 }
